@@ -12,6 +12,7 @@ class CreateQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('question_text');
             $table->longText('question_text')->nullable();
+            $table->string('question_option')->nullable();
             $table->integer('points')->nullable();
             $table->timestamps();
             $table->softDeletes();

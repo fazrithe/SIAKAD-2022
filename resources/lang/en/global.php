@@ -113,6 +113,7 @@ return [
     'attachment'                           => 'Attachment',
     'axis'                                 => 'Axis',
     'back_to_list'                         => 'Back to list',
+    'finish'                               => 'Finish',
     'basic_crm'                            => 'Basic CRM',
     'budget'                               => 'Budget',
     'calendar_sources'                     => 'Calendar sources',

@@ -48,6 +48,7 @@ class QuestionsController extends Controller
             "d" => $request->post('question_answare_d'),
         ]);
         $question->answare = json_encode($answare);
+        $question->answare_option = $request->post('answare_option');
         $question->points = $request->post('points');
         $question->test_id = $request->post('test_id');
         $question->save();

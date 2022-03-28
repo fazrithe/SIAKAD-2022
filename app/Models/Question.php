@@ -29,6 +29,8 @@ class Question extends Model implements HasMedia
     protected $fillable = [
         'test_id',
         'question_text',
+        'anware',
+        'answare_option',
         'points',
         'created_at',
         'updated_at',

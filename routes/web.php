@@ -111,6 +111,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Tests
     Route::delete('tests/destroy', 'TestsController@massDestroy')->name('tests.massDestroy');
     Route::get('tests/test/{id}', 'TestsController@test')->name('tests.test');
+    Route::post('tests/score', 'TestsController@score')->name('tests.score');
     Route::resource('tests', 'TestsController');
 
     // Questions

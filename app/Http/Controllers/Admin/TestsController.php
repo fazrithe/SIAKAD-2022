@@ -10,9 +10,13 @@ use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\Question;
 use App\Models\Test;
+use App\Models\MScoreSiswa;
+use Illuminate\Support\Facades\Auth;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 class TestsController extends Controller
 {
@@ -61,10 +65,9 @@ class TestsController extends Controller
         abort_if(Gate::denies('question_test_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $test = Question::where('test_id',$id)->get();
-        // foreach($test as $value){
-        //     return $value->id;
-        // }
-        return view('admin.tests.test', compact('test'));
+        $test_total = Question::where('test_id',$id)->count();
+
+        return view('admin.tests.test', compact('test','test_total'));
     }
 
     public function update(UpdateTestRequest $request, Test $test)
@@ -97,5 +100,56 @@ class TestsController extends Controller
         Test::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function score(Request $request)
+    {
+        $answare        = $request->post('answare');
+        $question_id    = $request->post('question_id');
+        $test_total     = $request->post('test_total');
+        $test_id        = $request->post('test_id');
+        $score    =0;
+        $true     =0;
+        $false    =0;
+        $null     =0;
+        for($i=0;$i<$test_total;$i++){
+            $nomor    =$question_id[$i];
+            if(empty($answare[$nomor])){
+                $null++;
+            }else{
+                $ans    =$answare[$nomor];
+                $users_count = DB::table('questions')
+                ->where('id', '=', $nomor)
+                ->where('answare_option', '=', $ans)
+                ->count();
+                $users_count1 = Question::where('id', '=', $nomor)
+                ->where('answare_option', '=', $ans)
+                ->sum('points');
+
+
+                if($users_count){
+                    $true++;
+                }
+                else {
+                    $false++;
+                }
+            }
+        }
+
+        $total = Question::where('test_id',$test_id)->get();
+        $collection = new Collection($total);
+        $totalScore = $collection->sum('id');
+        $score    = number_format(100 / $totalScore * $true);
+
+        $benarSiswa = $true;
+        $salahSiswa = $false;
+        $nilaiSiswa = $score;
+        $scoreSiswa = new MScoreSiswa;
+        $scoreSiswa->siswa_id = Auth::user()->id;
+        $scoreSiswa->test_id = $test_id;
+        $scoreSiswa->score = $score;
+        $scoreSiswa->save();
+        return view('admin.tests.score', compact('score'));
+
     }
 }

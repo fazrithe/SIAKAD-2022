@@ -104,6 +104,27 @@
                 </div>
             </div>
             <div class="form-group">
+                <div class="row">
+                    <div class="col-2">
+                    <select name="answare_option" class="form-control">
+                        <option value="a">A</option>
+                        <option value="b">B</option>
+                        <option value="c">C</option>
+                        <option value="d">D</option>
+                    </select>
+                    </div>
+                    <div class="col">
+                    <label class="form-check-label" for="is_correct">{{ trans('cruds.questionOption.fields.is_correct') }}</label>
+                    @if($errors->has('is_correct'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('is_correct') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.questionOption.fields.is_correct_helper') }}</span>
+                    </div>
+            </div>
+            </div>
+            <div class="form-group">
                 <label for="points">{{ trans('cruds.question.fields.points') }}</label>
                 <input class="form-control {{ $errors->has('points') ? 'is-invalid' : '' }}" type="number" name="points" id="points" value="{{ old('points', '1') }}" step="1">
                 @if($errors->has('points'))
