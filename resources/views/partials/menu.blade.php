@@ -228,6 +228,16 @@
                 </ul>
             </li>
         @endcan
+        @can('score_access')
+        <li class="c-sidebar-nav-item">
+            <a href="{{ route("admin.scores.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/scores") || request()->is("admin/scores/*") ? "c-active" : "" }}">
+                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                </i>
+                {{ trans('cruds.score.title') }}
+            </a>
+        </li>
+        @endcan
         @can('course_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.courses.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/courses") || request()->is("admin/courses/*") ? "c-active" : "" }}">

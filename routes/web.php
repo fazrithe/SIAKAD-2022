@@ -114,6 +114,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('tests/score', 'TestsController@score')->name('tests.score');
     Route::resource('tests', 'TestsController');
 
+    // Tests
+    Route::delete('scores/destroy', 'ScoresController@massDestroy')->name('scores.massDestroy');
+    Route::get('scores/test/{id}', 'ScoresController@test')->name('scores.test');
+    Route::post('scores/score', 'ScoresController@score')->name('scores.score');
+    Route::resource('scores', 'ScoresController');
+
     // Questions
     Route::delete('questions/destroy', 'QuestionsController@massDestroy')->name('questions.massDestroy');
     Route::post('questions/media', 'QuestionsController@storeMedia')->name('questions.storeMedia');
