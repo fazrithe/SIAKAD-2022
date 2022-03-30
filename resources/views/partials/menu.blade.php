@@ -1,4 +1,4 @@
-<div id="sidebar" class="c-sidebar c-sidebar-fixed c-sidebar-lg-show">
+<div id="sidebar" class="c-sidebar c-sidebar-fixed c-sidebar-lg-show main-sidebar sidebar-dark-primary elevation-4">
 
     <div class="c-sidebar-brand d-md-down-none">
         <a class="c-sidebar-brand-full h4" href="#">
@@ -7,10 +7,16 @@
     </div>
 
     <ul class="c-sidebar-nav">
-        <li>
-            <select class="searchable-field form-control">
+        <li class="c-sidebar-nav-item">
+        <div class="user-panel mt-3 pb-3 d-flex">
+            <div class="image">
 
-            </select>
+              <img src="{{ getUserImage(Auth::getUser()->id) }}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+              <a href="#" class="d-block">{{ getUserName(Auth::getUser()->id)}}</a>
+            </div>
+          </div>
         </li>
         <li class="c-sidebar-nav-item">
             <a href="{{ route("admin.home") }}" class="c-sidebar-nav-link">
@@ -36,7 +42,7 @@
                     <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
 
                     </i>
-                    {{ trans('cruds.masterGuru.title') }}
+                    {{ trans('cruds.master.title') }}
                 </a>
                 <ul class="c-sidebar-nav-dropdown-items">
                     @can('m_guru_access')
@@ -50,16 +56,6 @@
                         </li>
                     @endcan
                 </ul>
-            </li>
-        @endcan
-        @can('master_siswa_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/m-master-siswas*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw fas fa-users c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.masterSiswa.title') }}
-                </a>
                 <ul class="c-sidebar-nav-dropdown-items">
                     @can('m_master_siswa_access')
                         <li class="c-sidebar-nav-item">
@@ -72,16 +68,6 @@
                         </li>
                     @endcan
                 </ul>
-            </li>
-        @endcan
-        @can('master_kela_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/mkelas*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw fas fa-hospital-alt c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.masterKela.title') }}
-                </a>
                 <ul class="c-sidebar-nav-dropdown-items">
                     @can('mkela_access')
                         <li class="c-sidebar-nav-item">
@@ -94,16 +80,6 @@
                         </li>
                     @endcan
                 </ul>
-            </li>
-        @endcan
-        @can('master_jurusan_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/m-jurusans*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw fab fa-accusoft c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.masterJurusan.title') }}
-                </a>
                 <ul class="c-sidebar-nav-dropdown-items">
                     @can('m_jurusan_access')
                         <li class="c-sidebar-nav-item">
@@ -116,16 +92,6 @@
                         </li>
                     @endcan
                 </ul>
-            </li>
-        @endcan
-        @can('tahun_ajaran_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/m-tahun-ajarans*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw fab fa-yelp c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.tahunAjaran.title') }}
-                </a>
                 <ul class="c-sidebar-nav-dropdown-items">
                     @can('m_tahun_ajaran_access')
                         <li class="c-sidebar-nav-item">
@@ -138,16 +104,6 @@
                         </li>
                     @endcan
                 </ul>
-            </li>
-        @endcan
-        @can('master_pelajaran_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/list-master-pelajarans*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw fas fa-archway c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.masterPelajaran.title') }}
-                </a>
                 <ul class="c-sidebar-nav-dropdown-items">
                     @can('list_master_pelajaran_access')
                         <li class="c-sidebar-nav-item">
@@ -160,16 +116,6 @@
                         </li>
                     @endcan
                 </ul>
-            </li>
-        @endcan
-        @can('jadwal_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/list-jadwal-pelajarans*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw far fa-clock c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.jadwal.title') }}
-                </a>
                 <ul class="c-sidebar-nav-dropdown-items">
                     @can('list_jadwal_pelajaran_access')
                         <li class="c-sidebar-nav-item">

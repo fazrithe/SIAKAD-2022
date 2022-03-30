@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
+use App\Models\MMasterSiswa;
+use App\Models\MGuru;
+use App\Models\ListMasterPelajaran;
+use App\Models\MJurusan;
 
 class HomeController
 {
@@ -90,6 +94,11 @@ class HomeController
 
         $chart3 = new LaravelChart($settings3);
 
-        return view('home', compact('settings1', 'settings2', 'chart3'));
+        $countSiswa = MMasterSiswa::where('status_id',1)->count();
+        $countGuru = MGuru::where('status_id',1)->count();
+        $countPelajaran = ListMasterPelajaran::where('status_id',1)->count();
+        $countJurusan = MJurusan::where('status_id',1)->count();
+
+        return view('home', compact('settings1', 'settings2', 'chart3','countSiswa','countGuru','countPelajaran','countJurusan'));
     }
 }

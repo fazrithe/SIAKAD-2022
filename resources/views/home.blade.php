@@ -14,6 +14,68 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <div class="row">
+                        <div class="col-lg-3 col-6">
+                          <!-- small box -->
+                          <div class="small-box bg-info">
+                            <div class="inner">
+                              <h3>{{ $countSiswa }}</h3>
+
+                              <p>Siswa</p>
+                            </div>
+                            <div class="icon">
+                              <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                          </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                          <!-- small box -->
+                          <div class="small-box bg-success">
+                            <div class="inner">
+                              <h3>{{ $countGuru }}</h3>
+
+                              <p>Guru</p>
+                            </div>
+                            <div class="icon">
+                              <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                          </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                          <!-- small box -->
+                          <div class="small-box bg-warning">
+                            <div class="inner">
+                              <h3>{{ $countPelajaran }}</h3>
+
+                              <p>Pelajaran</p>
+                            </div>
+                            <div class="icon">
+                              <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                          </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                          <!-- small box -->
+                          <div class="small-box bg-danger">
+                            <div class="inner">
+                              <h3>{{ $countJurusan }}</h3>
+
+                              <p>Jurusan</p>
+                            </div>
+                            <div class="icon">
+                              <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                          </div>
+                        </div>
+                        <!-- ./col -->
+                      </div>
 
                     <div class="row">
                         {{-- Widget - latest entries --}}
@@ -93,10 +155,15 @@
                                 </tbody>
                             </table>
                         </div>
-
-                        <div class="{{ $chart3->options['column_class'] }}">
-                            <h3>{!! $chart3->options['chart_title'] !!}</h3>
-                            {!! $chart3->renderHtml() !!}
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="{{ $chart3->options['column_class'] }}">
+                                <h3>{!! $chart3->options['chart_title'] !!}</h3>
+                                {!! $chart3->renderHtml() !!}
+                            </div>
+                        </div>
+                        <div class="col-6">
                         </div>
                     </div>
                 </div>
